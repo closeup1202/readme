@@ -1,0 +1,6 @@
+rootProject.name = 'readmeshop'
+include 'modules', 'modules:controller-spring-web', 'modules:service-business', 'modules:logging-lombok'
+findProject(':modules:controller-spring-web')?.name = 'controller-spring-web'
+findProject(':modules:service-business')?.name = 'service-business'
+findProject(':modules:logging-lombok')?.name = 'logging-lombok'
+
