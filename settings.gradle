@@ -1,6 +1,7 @@
 rootProject.name = 'readmeshop'
-include 'modules', 'modules:controller-spring-web', 'modules:service-business', 'modules:logging-lombok'
+include 'modules', 'modules:controller-spring-web', 'modules:service-business', 'modules:service-implement', 'modules:domain-db-jpa'
 findProject(':modules:controller-spring-web')?.name = 'controller-spring-web'
 findProject(':modules:service-business')?.name = 'service-business'
-findProject(':modules:logging-lombok')?.name = 'logging-lombok'
+findProject(':modules:service-implement')?.name = 'service-implement'
+findProject(':modules:domain-db-jpa')?.name = 'domain-db-jpa'
 

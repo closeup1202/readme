@@ -1,7 +1,7 @@
 package api.readmeshop.controller;
 
-import api.readmeshop.dto.user.UserSignupDTO;
-import api.readmeshop.service.AccountService;
+import api.readmeshop.request.member.SignUpRequest;
+import api.readmeshop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class AccountController {
+public class MemberController {
 
-    private final AccountService accountService;
+    private final MemberService memberService;
 
     @GetMapping("/test")
     public String hello(){
@@ -20,8 +20,8 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-    public void signup(@RequestBody @Validated UserSignupDTO userSignupDTO){
-        accountService.signup();
+    public void signup(@RequestBody @Validated SignUpRequest request){
+
     }
 
 }
