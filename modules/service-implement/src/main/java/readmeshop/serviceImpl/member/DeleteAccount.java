@@ -1,7 +1,7 @@
 package readmeshop.serviceImpl.member;
 
-import api.readmeshop.domain.member.Member;
-import api.readmeshop.domain.member.MemberRepository;
+import api.readmeshop.domain.user.member.Member;
+import api.readmeshop.domain.user.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

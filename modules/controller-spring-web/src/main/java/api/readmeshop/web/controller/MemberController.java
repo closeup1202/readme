@@ -1,7 +1,8 @@
-package api.readmeshop.controller;
+package api.readmeshop.web.controller;
 
-import api.readmeshop.request.member.SignUpRequest;
-import api.readmeshop.service.MemberService;
+import api.readmeshop.service.member.MemberService;
+import api.readmeshop.web.request.member.SignUpRequest;
+import api.readmeshop.service.member.request.SignUpRequired;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +23,11 @@ public class MemberController {
     @PostMapping("/signup")
     public void signup(@RequestBody @Validated SignUpRequest request){
 
+        SignUpRequired signUpRequired = SignUpRequest.builder()
+                                                     .request(request)
+                                                     .build();
+        memberService.signUp(signUpRequired);
     }
+
 
 }

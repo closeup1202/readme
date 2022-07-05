@@ -25,8 +25,6 @@ class MemberControllerTest {
     @DisplayName("Hello print")
     void test_hello() throws Exception {
 
-
-
         mockMvc.perform(get("/test"))
                 .andExpect(content().string("Hello"))
                 .andDo(print());

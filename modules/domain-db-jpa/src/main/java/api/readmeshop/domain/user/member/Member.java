@@ -1,4 +1,4 @@
-package api.readmeshop.domain.member;
+package api.readmeshop.domain.user.member;
 
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -22,5 +22,5 @@ public class Member {
     @NotNull
     private String password;
 
-    private Pipe pipe;
+    private MemberDevice device;
 }
