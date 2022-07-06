@@ -46,6 +46,9 @@ subprojects{
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation(project(":modules:api-controller-springweb"))
+    implementation(project(":modules:api-service"))
+    implementation(project(":modules:api-domain-jpa"))
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
