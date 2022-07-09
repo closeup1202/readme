@@ -5,7 +5,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class SignUpRequired {
+public class SignUpRequired {
 
     private String useremail;
     private String userpassword;

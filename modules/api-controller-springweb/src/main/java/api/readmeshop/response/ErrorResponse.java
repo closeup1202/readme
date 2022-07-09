@@ -1,6 +1,6 @@
 package api.readmeshop.response;
 
-import api.readmeshop.exception.ErrorCases;
+import api.readmeshop.service.exception.ErrorCases;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

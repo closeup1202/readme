@@ -1,16 +1,14 @@
 package api.readmeshop.request.member;
 
-import api.readmeshop.exception.ErrorCases;
-import api.readmeshop.exception.ReadmeException;
+import api.readmeshop.service.exception.ReadmeException;
 import api.readmeshop.service.member.SignUpRequired;
 import lombok.*;
-import org.springframework.util.StringUtils;
 
 import javax.validation.constraints.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static api.readmeshop.exception.ErrorCases.*;
+import static api.readmeshop.service.exception.ErrorCases.*;
 
 @Getter
 @NoArgsConstructor
@@ -28,7 +26,6 @@ public class SignUpRequest extends SignUpRequired {
 
     @Builder
     public SignUpRequest(String useremail, String username, String userpassword) {
-        super();
         this.useremail = useremail;
         this.username = username;
         this.userpassword = userpassword;

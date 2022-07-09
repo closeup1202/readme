@@ -1,4 +1,4 @@
-package api.readmeshop.exception;
+package api.readmeshop.service.exception;
 
 import lombok.Getter;
 

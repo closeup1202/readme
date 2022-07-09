@@ -1,9 +1,8 @@
-package api.readmeshop.exception;
+package api.readmeshop.service.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-
 import static org.springframework.http.HttpStatus.*;
 
 @Getter
@@ -12,7 +11,6 @@ public enum ErrorCases {
 
     NOTFOUND("404", NOT_FOUND, "찾을 수 없습니다"),
     INVALID_REQUEST("400", BAD_REQUEST, "잘못된 요청입니다");
-
 
     private final String code;
     private final HttpStatus status;

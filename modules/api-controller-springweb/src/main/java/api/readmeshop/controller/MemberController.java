@@ -1,8 +1,7 @@
 package api.readmeshop.controller;
 
-import api.readmeshop.service.member.MemberService;
-import api.readmeshop.service.member.SignUpRequired;
 import api.readmeshop.request.member.SignUpRequest;
+import api.readmeshop.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
