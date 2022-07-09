@@ -11,10 +11,12 @@ public class MemberService {
     private final Duplication duplication;
     private final SignUp signUp;
     private final Resign resign;
+
     public void signUp(SignUpRequired required){
         duplication.DuplicatedEmailByMember(required.getUseremail());
         signUp.save(required);
     };
+
     public void resign(Long memberId){
         resign.delete(memberId);
     };

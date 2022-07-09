@@ -11,8 +11,8 @@ public class Duplications implements Duplication{
     private final MemberRepository memberRepository;
 
     @Override
-    public String DuplicatedEmailByMember(String email) {
-        return memberRepository.findByEmail(email)
-                .orElseThrow(IllegalArgumentException::new);
+    public void DuplicatedEmailByMember(String email) {
+        memberRepository.findByEmail(email)
+                        .ifPresent(RuntimeException::new);
     }
 }

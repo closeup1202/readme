@@ -23,8 +23,8 @@ public class MemberController {
 
     @PostMapping("/signup")
     public void signup(@RequestBody @Valid SignUpRequest request){
-        SignUpRequired signUpRequired = new SignUpRequest(request);
-        memberService.signUp(signUpRequired);
+        request.validate();
+        memberService.signUp(new SignUpRequest(request));
     }
 
     @DeleteMapping("/resign-membership/{memberId}")

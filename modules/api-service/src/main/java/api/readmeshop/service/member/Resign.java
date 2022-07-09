@@ -2,9 +2,9 @@ package api.readmeshop.service.member;
 
 import api.readmeshop.domain.user.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class Resign {
 

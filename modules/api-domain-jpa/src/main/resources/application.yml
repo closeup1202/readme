@@ -13,7 +13,7 @@ spring:
         format_sql: true
     open-in-view: false
 #JPA args? ???? ??
-logging.level:
-  org.hibernate:
-    SQL: debug
-    type.descriptor.sql: trace
+#logging.level:
+#  org.hibernate:
+#    SQL: debug
+#    type.descriptor.sql: trace

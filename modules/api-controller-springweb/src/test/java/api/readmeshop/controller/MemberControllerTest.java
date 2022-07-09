@@ -1,17 +1,18 @@
 package api.readmeshop.controller;
 
+import api.readmeshop.domain.user.member.MemberRepository;
 import api.readmeshop.request.member.SignUpRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
+import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.http.MediaType.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@Slf4j
 @AutoConfigureMockMvc
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class MemberControllerTest {
@@ -27,10 +29,41 @@ class MemberControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private static ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+
+    static SignUpRequest SignupRequestObject(String email, String name, String password) {
+        return SignUpRequest.builder()
+                            .useremail(email)
+                            .username(name)
+                            .userpassword(password)
+                            .build();
+    }
+
+    static String SignupRequestObjectToJson(String email, String name, String password) throws JsonProcessingException {
+        SignUpRequest request = SignupRequestObject(email, name, password);
+        return objectMapper.writeValueAsString(request);
+    }
+
+    /**************************************************************************/
+
+    @BeforeAll
+    static void beforeAll(){
+        log.info("웹 컨트롤러 테스트 시작");
+    }
+
+    @BeforeEach
+    void data_clean(){
+        memberRepository.deleteAll();
+    }
+
+    /**************************************************************************/
 
     @Test
-    @DisplayName("Hello print")
+    @DisplayName("TEST로 접속했을 때, Hello를 출력한다")
     void test_hello() throws Exception {
         //expected
         mockMvc.perform(get("/test"))
@@ -38,22 +71,61 @@ class MemberControllerTest {
                 .andDo(print());
     }
     @Test
-    @DisplayName("테스트")
+    @DisplayName("회원가입에 성공하는 테스트 : 반환 값은 없다(void)")
     void test2() throws Exception {
 
         //given
-        SignUpRequest request = SignUpRequest.builder()
-                .useremail("a@naver.com")
-                .username("건홍")
-                .userpassword("pwd123@!e")
-                .build();
-
-        String json = objectMapper.writeValueAsString(request);
+        String json = SignupRequestObjectToJson("a@naver.com", "건홍", "pwd123@!e");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
                 .andExpect(status().isOk())
                 .andExpect(content().string(""))
                 .andDo(print());
+    }
+    @Test
+    @DisplayName("회원가입에 실패하는 테스트 : 빈 값 입력 시 오류를 발생")
+    void test3() throws Exception {
+        //given
+        String json = SignupRequestObjectToJson("a@naver.com", "건홍", " ");
+
+        //expected
+        mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("회원가입에 실패하는 테스트 2 : 이름에 특수문자를 포함할 수 없다")
+    void test() throws Exception {
+        //given
+        String json = SignupRequestObjectToJson("a@naver.com", "김바보#$%#", "askdkspda");
+
+        //expected
+        mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
+                .andExpect(status().is4xxClientError())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("회원가입에 성공한다. DB에 값을 저장한다 ")
+    void test4() throws Exception {
+        //given
+        String json = SignupRequestObjectToJson("a@naver.com", "건홍", "dsdadsa@@");
+
+        //expected
+        mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
+                .andExpect(status().isOk())
+                .andDo(print());
+
+        Assertions.assertThat(1L).isEqualTo(memberRepository.count());
+    }
+
+    /**************************************************************************/
+
+
+    @AfterAll
+    static void AfterAll(){
+        log.info("웹 컨트롤러 테스트 끝");
     }
 }
