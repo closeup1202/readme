@@ -1,4 +1,4 @@
-package api.readmeshop.service.member;
+package api.readmeshop.service.user.member;
 
 import api.readmeshop.service.seek.Duplication;
 import lombok.RequiredArgsConstructor;

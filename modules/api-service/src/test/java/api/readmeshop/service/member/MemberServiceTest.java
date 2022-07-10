@@ -1,6 +1,8 @@
 package api.readmeshop.service.member;
 
 import api.readmeshop.domain.user.member.MemberRepository;
+import api.readmeshop.service.user.member.MemberService;
+import api.readmeshop.service.user.member.SignUpRequired;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

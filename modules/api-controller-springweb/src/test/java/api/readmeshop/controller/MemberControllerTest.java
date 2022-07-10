@@ -1,7 +1,7 @@
 package api.readmeshop.controller;
 
 import api.readmeshop.domain.user.member.MemberRepository;
-import api.readmeshop.request.member.SignUpRequest;
+import api.readmeshop.request.user.member.SignUpRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,6 @@ class MemberControllerTest {
 
     @Autowired
     private MemberRepository memberRepository;
-
 
     static SignUpRequest SignupRequestObject(String email, String name, String password) {
         return SignUpRequest.builder()

@@ -1,6 +1,6 @@
 package api.readmeshop.advice;
 
-import api.readmeshop.response.ErrorResponse;
+import api.readmeshop.service.exception.ErrorResponse;
 import api.readmeshop.service.exception.ReadmeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package api.readmeshop.service.member;
+package api.readmeshop.service.user.member;
 
 import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.domain.user.member.MemberRepository;

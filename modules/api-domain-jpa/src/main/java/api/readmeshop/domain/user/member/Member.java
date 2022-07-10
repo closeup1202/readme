@@ -1,11 +1,11 @@
 package api.readmeshop.domain.user.member;
 
+import api.readmeshop.domain.contents.literature.Literature;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,13 +14,19 @@ import javax.persistence.Id;
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "memberId")
     private Long id;
 
     private String email;
 
     private String password;
 
+    @OneToMany
+    @JoinColumn(name = "memberId")
+    private List<Literature> writings = new ArrayList<>();
+
     private MemberDevice device;
+
     @Builder
     public Member(String useremail, String userpassword) {
         this.email = useremail;

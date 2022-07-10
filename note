@@ -1,0 +1,7 @@
+1. QClass를 사용시
+
+settings - build, execution, deployment - build tools - gradle
+run and using 을 gradle (안 그럼 QClass 못 읽음)
+run test using은 intellij로
+
+2. 구조 변경 (왜 나는 문학을 갈랐을까)

@@ -1,7 +1,7 @@
-package api.readmeshop.request.member;
+package api.readmeshop.request.user.member;
 
 import api.readmeshop.service.exception.ReadmeException;
-import api.readmeshop.service.member.SignUpRequired;
+import api.readmeshop.service.user.member.SignUpRequired;
 import lombok.*;
 
 import javax.validation.constraints.*;
