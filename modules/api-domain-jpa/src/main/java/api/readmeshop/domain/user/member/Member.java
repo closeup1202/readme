@@ -1,13 +1,12 @@
 package api.readmeshop.domain.user.member;
 
-import api.readmeshop.domain.contents.literature.Literature;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "position")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -20,12 +19,6 @@ public class Member {
     private String email;
 
     private String password;
-
-    @OneToMany
-    @JoinColumn(name = "memberId")
-    private List<Literature> writings = new ArrayList<>();
-
-    private MemberDevice device;
 
     @Builder
     public Member(String useremail, String userpassword) {

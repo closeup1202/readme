@@ -12,4 +12,5 @@ public class PostingLiteratureRequired {
     private String email;
     private String title;
     private String contents;
+    private Shape shape;
 }

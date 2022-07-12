@@ -1,13 +1,12 @@
 package api.readmeshop.controller;
 
-import api.readmeshop.request.literature.PostedLiterature;
-import api.readmeshop.request.literature.PostingLiterature;
+import api.readmeshop.request.literature.PostingPoetry;
 import api.readmeshop.service.literature.LiteratureService;
-import api.readmeshop.service.literature.LiteratureResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,13 +14,13 @@ public class LiteratureController {
 
     private final LiteratureService literatureService;
 
-//    @GetMapping("/poetry")
-//    public List<LiteratureResponse> getList(@ModelAttribute PostedLiterature posted){
-//        return literatureService.getPoetries(posted);
-//    }
+    @GetMapping("/poetry")
+    public void poetry(){
+
+    }
 
     @PostMapping("/poetry")
-    public void posting(@RequestBody PostingLiterature posting){
+    public void poetry_post(@RequestBody PostingPoetry posting){
         literatureService.write(posting);
     }
 }
