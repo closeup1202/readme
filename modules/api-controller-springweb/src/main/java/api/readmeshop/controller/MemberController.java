@@ -4,6 +4,7 @@ import api.readmeshop.request.user.member.SignUpRequest;
 import api.readmeshop.service.user.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

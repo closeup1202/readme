@@ -1,6 +1,7 @@
 package api.readmeshop.service.literature;
 
-public interface Write {
+import api.readmeshop.domain.contents.literature.Literature;
 
-    void savePoetry(PostingLiteratureRequired required);
+public interface Write {
+    void savePoetry(Literature literature);
 }

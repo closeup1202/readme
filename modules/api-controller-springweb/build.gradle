@@ -2,6 +2,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.0'
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.0'
     implementation(project(":modules:api-service"))
-    implementation(project(":modules:api-domain-jpa"))
+    implementation(project(":modules:api-domain-jpa")) //이건 테스팅을 위한 것 (지울 예정, 그런데 지울 수 있을까)
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.0'
 }

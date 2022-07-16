@@ -1,7 +1,7 @@
 package api.readmeshop.service.seek;
 
-import api.readmeshop.domain.user.member.writer.Writer;
-import api.readmeshop.domain.user.member.writer.WriterRepository;
+import api.readmeshop.domain.user.member.Member;
+import api.readmeshop.domain.user.member.MemberRepository;
 import api.readmeshop.service.exception.ReadmeException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,11 +12,11 @@ import static api.readmeshop.service.exception.ErrorCases.NOTFOUND;
 @Component
 public class Validations implements Validation{
 
-    private final WriterRepository writerRepository;
+    private final MemberRepository memberRepository;
 
     @Override
-    public Writer isWriter(String email){
-        return writerRepository.findByEmail(email)
+    public Member isWriter(String email){
+        return memberRepository.findByEmail(email)
                 .orElseThrow(()-> new ReadmeException(NOTFOUND));
     }
 }

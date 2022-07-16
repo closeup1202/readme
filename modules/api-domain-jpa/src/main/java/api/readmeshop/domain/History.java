@@ -1,4 +1,4 @@
-package api.readmeshop.domain.contents.literature;
+package api.readmeshop.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public abstract class LiteratureHistory {
+public abstract class History {
 
     @CreatedDate
     @Column(updatable = false)

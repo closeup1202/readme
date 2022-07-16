@@ -1,8 +1,8 @@
 package api.readmeshop.service.seek;
 
-import api.readmeshop.domain.user.member.writer.Writer;
+import api.readmeshop.domain.user.member.Member;
 
 public interface Validation {
 
-    Writer isWriter(String email);
+    Member isWriter(String email);
 }

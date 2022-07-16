@@ -1,9 +1,10 @@
 package api.readmeshop.domain.contents.literature.poetry;
 
 import api.readmeshop.domain.contents.literature.Literature;
-import api.readmeshop.domain.user.member.writer.Writer;
+import api.readmeshop.domain.user.member.Member;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -13,6 +14,7 @@ import javax.persistence.Enumerated;
 
 @Entity
 @DiscriminatorValue("P")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Poetry extends Literature {
 
@@ -20,8 +22,8 @@ public class Poetry extends Literature {
     private PoetryShape shape;
 
     @Builder
-    public Poetry(String title, String contents, PoetryShape shape) {
-        super(title, contents);
+    public Poetry(String title, String contents, Member member, PoetryShape shape) {
+        super(title, contents, member);
         this.shape = shape;
     }
 }
