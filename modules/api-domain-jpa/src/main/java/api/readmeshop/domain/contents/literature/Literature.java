@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "genre")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public abstract class Literature extends History {
 
@@ -30,6 +31,4 @@ public abstract class Literature extends History {
         this.contents = contents;
         this.member = member;
     }
-
-    protected Literature() {}
 }

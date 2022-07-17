@@ -3,7 +3,6 @@ package api.readmeshop.service.user.member;
 import api.readmeshop.service.seek.Duplication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +13,7 @@ public class MemberService {
     private final Resign resign;
 
     public void signUp(SignUpRequired required){
-        duplication.DuplicatedEmailByMember(required.getUseremail());
+        duplication.DuplicatedEmailByMember(required.getEmail());
         signUp.save(required);
     };
 

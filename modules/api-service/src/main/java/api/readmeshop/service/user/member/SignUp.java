@@ -13,8 +13,8 @@ public class SignUp {
 
     public void save(SignUpRequired required) {
         Member member = Member.builder()
-                .email(required.getUseremail())
-                .password(required.getUserpassword())
+                .email(required.getEmail())
+                .password(required.getPassword())
                 .build();
 
         memberRepository.save(member);

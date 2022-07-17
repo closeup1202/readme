@@ -12,27 +12,25 @@ import static api.readmeshop.service.exception.ErrorCases.*;
 
 @Getter
 @NoArgsConstructor
-public class SignUpRequest extends SignUpRequired {
+@Builder
+@AllArgsConstructor
+public class SignUpRequest {
 
     @Email
     @NotBlank
-    private String useremail;
+    private String email;
 
     @NotBlank
     private String username;
 
     @NotBlank
-    private String userpassword;
+    private String password;
 
-    @Builder
-    public SignUpRequest(String useremail, String username, String userpassword) {
-        this.useremail = useremail;
-        this.username = username;
-        this.userpassword = userpassword;
-    }
-
-    public SignUpRequest(SignUpRequest request){
-        super(request.useremail, request.userpassword);
+    public SignUpRequired getSignUpRequired(){
+        return SignUpRequired.builder()
+                .email(this.email)
+                .password(this.password)
+                .build();
     }
 
     public void validate(){

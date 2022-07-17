@@ -39,8 +39,8 @@ class MemberServiceTest {
 
         //then
         assertThat(1L).isEqualTo(memberRepository.count());
-        assertThat("a@naver.com").isEqualTo(required.getUseremail());
-        assertThat("pwd").isEqualTo(required.getUserpassword());
+        assertThat("a@naver.com").isEqualTo(required.getEmail());
+        assertThat("pwd").isEqualTo(required.getPassword());
     }
 
     /********************************************************************************************/

@@ -1,8 +1,11 @@
 package api.readmeshop.controller;
 
 import api.readmeshop.domain.contents.literature.LiteratureRepository;
-import api.readmeshop.request.literature.poetry.PostPoetryRequest;
-import api.readmeshop.service.literature.PostLiteratureRequired;
+import api.readmeshop.domain.user.member.Member;
+import api.readmeshop.domain.user.member.MemberRepository;
+import api.readmeshop.domain.user.member.MemberType;
+import api.readmeshop.request.literature.poetry.PostLiteratureRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -30,7 +33,26 @@ class PoetryControllerTest {
     private LiteratureRepository literatureRepository;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private MemberRepository memberRepository;
+
+    @Autowired
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    static PostLiteratureRequest postPoetryRequestObject(String poetryType, String title, String contents, String email){
+        return PostLiteratureRequest.builder()
+                .type(poetryType)
+                .email(email)
+                .title(title)
+                .contents(contents)
+                .build();
+    }
+
+    static String postPoetryRequestObjectToJson(String poetryType, String title, String contents, String email) throws JsonProcessingException {
+        PostLiteratureRequest request = postPoetryRequestObject(poetryType, title, contents, email);
+        return objectMapper.writeValueAsString(request);
+    }
+
+    /*******************************************************************************/
 
     @BeforeAll
     static void beforeAll(){
@@ -42,19 +64,21 @@ class PoetryControllerTest {
         literatureRepository.deleteAll();
     }
 
+    /*******************************************************************************/
+
     @Test
     @DisplayName("시를 작성하면 DB에 시가 저장된다")
     void test() throws Exception {
         //given
-        PostLiteratureRequired poetry = PostPoetryRequest.builder()
+        String json = postPoetryRequestObjectToJson("free", "first", "contents", "a@naver.com");
+        Member member = Member.builder()
                 .email("a@naver.com")
-                .shape(new Shape(PoetryShape.FREE))
-                .title("first")
-                .contents("뜯겨져나가기")
+                .password("123")
+                .type(MemberType.WRITER)
                 .build();
 
-        String json = objectMapper.writeValueAsString(poetry);
-
+        //when
+        memberRepository.save(member);
         //when
         mockMvc.perform(post("/poetry").contentType(APPLICATION_JSON).content(json))
                 .andExpect(status().isOk())
@@ -63,6 +87,7 @@ class PoetryControllerTest {
         Assertions.assertThat(1L).isEqualTo(literatureRepository.count());
     }
 
+    /*******************************************************************************/
 
     @AfterAll
     static void afterAll(){

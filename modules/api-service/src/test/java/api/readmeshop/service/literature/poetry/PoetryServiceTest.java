@@ -52,12 +52,7 @@ class PoetryServiceTest {
     @Transactional
     void test(){
         //given
-        PostLiteratureRequired poetry = PostLiteratureRequired.builder()
-                .email("a@naver.com")
-                .type(PoetryShape.FREE)
-                .title("first")
-                .contents("뜯겨져나가기")
-                .build();
+        PostLiteratureRequired poetry = new PostLiteratureRequired("a@naver.com","first", "뜯겨져나가기", PoetryShape.FREE);
 
          Member member = Member.builder()
                  .email("a@naver.com")

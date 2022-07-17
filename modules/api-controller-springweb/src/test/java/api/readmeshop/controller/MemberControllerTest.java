@@ -34,16 +34,16 @@ class MemberControllerTest {
     @Autowired
     private MemberRepository memberRepository;
 
-    static SignUpRequest SignupRequestObject(String email, String name, String password) {
+    static SignUpRequest signupRequestObject(String email, String name, String password) {
         return SignUpRequest.builder()
-                            .useremail(email)
+                            .email(email)
                             .username(name)
-                            .userpassword(password)
+                            .password(password)
                             .build();
     }
 
-    static String SignupRequestObjectToJson(String email, String name, String password) throws JsonProcessingException {
-        SignUpRequest request = SignupRequestObject(email, name, password);
+    static String signupRequestObjectToJson(String email, String name, String password) throws JsonProcessingException {
+        SignUpRequest request = signupRequestObject(email, name, password);
         return objectMapper.writeValueAsString(request);
     }
 
@@ -74,7 +74,7 @@ class MemberControllerTest {
     void test2() throws Exception {
 
         //given
-        String json = SignupRequestObjectToJson("a@naver.com", "건홍", "pwd123@!e");
+        String json = signupRequestObjectToJson("a@naver.com", "건홍", "pwd123@!e");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
@@ -86,7 +86,7 @@ class MemberControllerTest {
     @DisplayName("회원가입에 실패하는 테스트 : 빈 값 입력 시 오류를 발생")
     void test3() throws Exception {
         //given
-        String json = SignupRequestObjectToJson("a@naver.com", "건홍", " ");
+        String json = signupRequestObjectToJson("a@naver.com", "건홍", " ");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
@@ -98,7 +98,7 @@ class MemberControllerTest {
     @DisplayName("회원가입에 실패하는 테스트 2 : 이름에 특수문자를 포함할 수 없다")
     void test() throws Exception {
         //given
-        String json = SignupRequestObjectToJson("a@naver.com", "김바보#$%#", "askdkspda");
+        String json = signupRequestObjectToJson("a@naver.com", "김바보#$%#", "askdkspda");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
@@ -110,7 +110,7 @@ class MemberControllerTest {
     @DisplayName("회원가입에 성공한다. DB에 값을 저장한다 ")
     void test4() throws Exception {
         //given
-        String json = SignupRequestObjectToJson("a@naver.com", "건홍", "dsdadsa@@");
+        String json = signupRequestObjectToJson("a@naver.com", "건홍", "dsdadsa@@");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))

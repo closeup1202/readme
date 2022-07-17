@@ -2,6 +2,7 @@ package api.readmeshop.controller;
 
 import api.readmeshop.request.user.member.SignUpRequest;
 import api.readmeshop.service.user.member.MemberService;
+import api.readmeshop.service.user.member.SignUpRequired;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,8 @@ public class MemberController {
     @PostMapping("/signup")
     public void signup(@RequestBody @Valid SignUpRequest request){
         request.validate();
-        memberService.signUp(new SignUpRequest(request));
+        SignUpRequired required = request.getSignUpRequired();
+        memberService.signUp(required);
     }
 
     @DeleteMapping("/resign-membership/{memberId}")

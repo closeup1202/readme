@@ -9,7 +9,6 @@ import api.readmeshop.service.literature.Write;
 import api.readmeshop.service.seek.Validations;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,16 +19,16 @@ public class PoetryService {
 
     public void write(PostLiteratureRequired required){
         Member writer = validations.isWriter(required.getEmail());
-        Literature literature = getPoetry(required, writer);
+        Literature literature = setPoetry(required, writer);
         write.savePoetry(literature);
     }
 
-    private Literature getPoetry(PostLiteratureRequired required, Member writer) {
+    private Literature setPoetry(PostLiteratureRequired required, Member writer) {
         return Poetry.builder()
-                        .title(required.getTitle())
-                        .contents(required.getContents())
-                        .shape((PoetryShape)required.getType())
-                        .member(writer)
-                        .build();
+                    .title(required.getTitle())
+                    .contents(required.getContents())
+                    .shape((PoetryShape)required.getType())
+                    .member(writer)
+                    .build();
     }
 }

@@ -4,9 +4,10 @@ import lombok.*;
 
 @Getter
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class SignUpRequired {
 
-    private String useremail;
-    private String userpassword;
+    private String email;
+    private String password;
 }
