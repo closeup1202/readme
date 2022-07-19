@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import static api.readmeshop.domain.contents.literature.QLiterature.literature;
+import static api.readmeshop.domain.contents.literature.poetry.QPoetry.*;
 
 @RequiredArgsConstructor
 public class PoetryRepositoryImpl implements PoetryRepositoryCustom {
@@ -14,11 +15,11 @@ public class PoetryRepositoryImpl implements PoetryRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<Literature> getPoetryList(int size, Long offset) {
-        return jpaQueryFactory.selectFrom(literature)
+    public List<Poetry> getPoetryList(int size, Long offset) {
+        return jpaQueryFactory.selectFrom(poetry)
                         .limit(size)
                         .offset(offset)
-                        .orderBy(literature.id.desc())
+                        .orderBy(poetry.id.desc())
                         .fetch();
     }
 }

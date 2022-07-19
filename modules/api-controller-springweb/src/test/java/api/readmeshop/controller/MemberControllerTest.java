@@ -1,5 +1,6 @@
 package api.readmeshop.controller;
 
+import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.domain.user.member.MemberRepository;
 import api.readmeshop.request.user.member.SignUpRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,9 +13,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -117,7 +118,27 @@ class MemberControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
 
-        Assertions.assertThat(1L).isEqualTo(memberRepository.count());
+        assertThat(1L).isEqualTo(memberRepository.count());
+    }
+
+    @Test
+    @DisplayName("회원 탈퇴하는 테스트")
+    void test5() throws Exception {
+        //given
+        Member member = Member.builder()
+                .email("a@naver.com")
+                .type(null)
+                .password("aasdsa@@")
+                .build();
+
+        memberRepository.save(member);
+
+        //expected
+        mockMvc.perform(delete("/resign/{memberId}", member.getId()).contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+
+        assertThat(0L).isEqualTo(memberRepository.count());
     }
 
     /**************************************************************************/

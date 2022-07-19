@@ -1,6 +1,6 @@
 package api.readmeshop.service.user.member;
 
-import api.readmeshop.service.seek.Duplication;
+import api.readmeshop.service.seek.Validation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private final Duplication duplication;
+    private final Validation validation;
     private final SignUp signUp;
     private final Resign resign;
 
     public void signUp(SignUpRequired required){
-        duplication.DuplicatedEmailByMember(required.getEmail());
+        validation.duplicatedEmailByMember(required.getEmail());
         signUp.save(required);
     };
 
     public void resign(Long memberId){
+        validation.isExistMemberId(memberId);
         resign.delete(memberId);
     };
 }

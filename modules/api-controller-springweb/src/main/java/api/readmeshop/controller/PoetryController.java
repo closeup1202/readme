@@ -1,14 +1,16 @@
 package api.readmeshop.controller;
 
+import api.readmeshop.request.literature.PostedLiterature;
 import api.readmeshop.request.literature.poetry.PostLiteratureRequest;
+import api.readmeshop.service.literature.LiteratureResponse;
 import api.readmeshop.service.literature.PostLiteratureRequired;
 import api.readmeshop.service.literature.poetry.PoetryService;
+import api.readmeshop.service.policies.posting.PostedPolicy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +26,8 @@ public class PoetryController {
     }
 
     @GetMapping("/poetry")
-    public void poetry(){
-
+    public List<LiteratureResponse> poetry(@ModelAttribute PostedLiterature literature){
+        PostedPolicy policy = literature.postedPolicy();
+        return poetryService.getList(policy);
     }
 }

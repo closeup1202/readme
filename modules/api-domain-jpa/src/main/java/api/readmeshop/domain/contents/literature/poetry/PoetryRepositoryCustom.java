@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PoetryRepositoryCustom {
 
-    List<Literature> getPoetryList(int page, Long offset);
+    List<Poetry> getPoetryList(int size, Long offset);
 }

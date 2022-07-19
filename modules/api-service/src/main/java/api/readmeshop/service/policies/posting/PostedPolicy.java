@@ -3,6 +3,7 @@ package api.readmeshop.service.policies.posting;
 import lombok.*;
 
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostedPolicy {

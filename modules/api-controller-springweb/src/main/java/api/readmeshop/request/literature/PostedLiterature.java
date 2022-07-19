@@ -4,13 +4,17 @@ import api.readmeshop.service.policies.posting.PostedPolicy;
 import lombok.*;
 
 @Getter
-public class PostedLiterature extends PostedPolicy {
+@AllArgsConstructor
+public class PostedLiterature {
 
     private Integer page;
     private Integer size;
 
     @Builder
-    public PostedLiterature(PostedLiterature posting) {
-        super(posting.page, posting.size);
+    public PostedPolicy postedPolicy() {
+        return PostedPolicy.builder()
+                .page(this.page)
+                .size(this.size)
+                .build();
     }
 }

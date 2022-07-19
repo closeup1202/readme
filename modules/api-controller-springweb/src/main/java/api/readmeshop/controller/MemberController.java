@@ -5,7 +5,6 @@ import api.readmeshop.service.user.member.MemberService;
 import api.readmeshop.service.user.member.SignUpRequired;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +28,7 @@ public class MemberController {
         memberService.signUp(required);
     }
 
-    @DeleteMapping("/resign-membership/{memberId}")
+    @DeleteMapping("/resign/{memberId}")
     public void resign(@PathVariable Long memberId){
         memberService.resign(memberId);
     }

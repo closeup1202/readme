@@ -79,7 +79,7 @@ class PoetryControllerTest {
 
         //when
         memberRepository.save(member);
-        //when
+
         mockMvc.perform(post("/poetry").contentType(APPLICATION_JSON).content(json))
                 .andExpect(status().isOk())
                 .andDo(print());
