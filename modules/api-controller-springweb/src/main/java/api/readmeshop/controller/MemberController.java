@@ -1,5 +1,6 @@
 package api.readmeshop.controller;
 
+import api.readmeshop.aop.Trace;
 import api.readmeshop.request.user.member.SignUpRequest;
 import api.readmeshop.service.user.member.MemberService;
 import api.readmeshop.service.user.member.SignUpRequired;
@@ -21,9 +22,11 @@ public class MemberController {
         return "Hello";
     }
 
+    @Trace
     @PostMapping("/signup")
     public void signup(@RequestBody @Valid SignUpRequest request){
         request.validate();
+        log.info("clear?");
         SignUpRequired required = request.getSignUpRequired();
         memberService.signUp(required);
     }

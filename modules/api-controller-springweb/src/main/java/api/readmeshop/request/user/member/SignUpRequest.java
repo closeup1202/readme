@@ -14,6 +14,7 @@ import static api.readmeshop.service.exception.ErrorCases.*;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@ToString
 public class SignUpRequest {
 
     @Email
