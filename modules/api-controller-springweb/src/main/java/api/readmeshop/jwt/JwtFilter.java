@@ -1,4 +1,4 @@
-package api.readmeshop.filter;
+package api.readmeshop.jwt;
 
 import api.readmeshop.jwt.JwtHelper;
 import io.jsonwebtoken.Claims;

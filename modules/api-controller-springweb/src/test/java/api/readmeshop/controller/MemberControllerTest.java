@@ -2,7 +2,7 @@ package api.readmeshop.controller;
 
 import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.domain.user.member.MemberRepository;
-import api.readmeshop.filter.JwtFilter;
+import api.readmeshop.jwt.JwtFilter;
 import api.readmeshop.jwt.JwtHelper;
 import api.readmeshop.request.user.member.SignUpRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @MockBeans(value = {@MockBean(JwtFilter.class),
-                    @MockBean(LoginFilter.class),
                     @MockBean(JwtHelper.class)})
 class MemberControllerTest {
 

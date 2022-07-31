@@ -4,9 +4,9 @@ import api.readmeshop.aop.Trace;
 import api.readmeshop.jwt.JwtHelper;
 import api.readmeshop.request.user.member.SignInRequest;
 import api.readmeshop.request.user.member.SignUpRequest;
+import api.readmeshop.request.user.member.TokenResponse;
 import api.readmeshop.service.user.member.MemberService;
 import api.readmeshop.service.user.member.SignUpRequired;
-import api.readmeshop.request.user.member.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -15,15 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController

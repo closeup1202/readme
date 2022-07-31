@@ -1,6 +1,6 @@
 package api.readmeshop.config;
 
-import api.readmeshop.filter.JwtFilter;
+import api.readmeshop.jwt.JwtFilter;
 import api.readmeshop.jwt.JwtExceptionHandling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +31,8 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService memberDetailsService;
 
+    private static final String[] PERMIT_PATTERNS = {"/signup", "/account", "/signin", "/h2-console/**", "/favicon.ico"};
+
     @Bean
     public HttpHeaders httpHeaders(){
         return new HttpHeaders();
@@ -56,7 +58,7 @@ public class SecurityConfig {
                 .authenticationEntryPoint(jwtExceptionHandling::commence)
             .and()
             .authorizeHttpRequests() // HttpServletRequest 를 사용하는 요청들에 대한 접근 제한을 설정하겠다는 의미
-            .antMatchers("/signup", "/account", "/signin", "/h2-console/**", "/favicon.ico").permitAll() // api 에 대한 요청은 인증없이 접근을 허용하겠다는 의미
+            .antMatchers(PERMIT_PATTERNS).permitAll() // api 에 대한 요청은 인증없이 접근을 허용하겠다는 의미
             .anyRequest().authenticated() // 나머지 요청들은 인증을 받아야 한다는 의미
             .and()
             .addFilterAt(jwtFilter, BasicAuthenticationFilter.class);

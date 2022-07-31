@@ -22,9 +22,7 @@ logging.level:
     type.descriptor.sql: trace
 
 jwt:
-  header: Authorization
   secret: mochus36lZoj3DdSsarTsDQ1g7DxJln32qlCKRb4DCwRWUOHuGactEN7Qp1krla8
-  token-validity-in-seconds: 86400
 ---
 
 spring:
