@@ -5,3 +5,31 @@ run and using 을 gradle (안 그럼 QClass 못 읽음)
 run test using은 intellij로
 
 2. 구조 변경 (왜 나는 문학을 갈랐을까)
+
+3. JWT 기본 뼈대
+
+(1) 로그인 시, 토큰을 생성한다.
+(2) 클라이언트에 토큰을 저장한다.
+(3) 클라이언트에서 요청 때마다 토큰이 동봉되어 서버로 보내진다.
+(4) 서버는 토큰이 유효한 지 검사한다.
+  (4)-1. 유효 -> OK
+  (4)-2. 유효X -> Nope
+
+
+4. Authentication 클래스
+
+Authentication Manager 에서 요청을 처리한 후, 인증 요청 또는 인증된 주체에 대한 토큰을 나타냄
+authenticate(인증) 메서드를 사용
+
+요청이 인증되면,
+인증은 일반적으로 사용 중인 인증 메커니즘에 의해
+SecurityContextHolder 에 의해 관리되는 스레드 로컬 SecurityContext 에 저장됨
+
+명시적 인증은 Spring Security 의 인증 메커니즘 중 하나를 사용하지 않고
+인증 인스턴스를 생성하고 코드를 사용하여 수행할 수 있습니다.
+SecurityContext context = SecurityContextHolder.createEmptyContext();
+context.set Authentication(an Authentication);
+SecurityContextHolder.setContext(context)
+
+Authentication 에 true 로 설정된 속성이 없는 한,
+Authentication 이 발생한 모든 보안 인터셉터(메서드 또는 웹 호출용)에 의해 인증됨

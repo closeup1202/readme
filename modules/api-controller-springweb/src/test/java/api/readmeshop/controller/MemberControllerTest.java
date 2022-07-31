@@ -2,16 +2,20 @@ package api.readmeshop.controller;
 
 import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.domain.user.member.MemberRepository;
+import api.readmeshop.filter.JwtFilter;
+import api.readmeshop.jwt.JwtHelper;
 import api.readmeshop.request.user.member.SignUpRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -22,8 +26,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @Slf4j
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@MockBeans(value = {@MockBean(JwtFilter.class),
+                    @MockBean(LoginFilter.class),
+                    @MockBean(JwtHelper.class)})
 class MemberControllerTest {
 
     @Autowired
@@ -63,19 +70,22 @@ class MemberControllerTest {
     /**************************************************************************/
 
     @Test
-    @DisplayName("TEST로 접속했을 때, Hello를 출력한다")
+    @DisplayName("TEST 로 접속했을 때, Hello 를 출력한다")
     void test_hello() throws Exception {
         //expected
         mockMvc.perform(get("/test"))
                 .andExpect(content().string("Hello"))
                 .andDo(print());
     }
+
+
     @Test
     @DisplayName("회원가입에 성공하는 테스트 : 반환 값은 없다(void)")
+    @Transactional
     void test2() throws Exception {
 
         //given
-        String json = signupRequestObjectToJson("a@naver.com", "건홍", "pwd123@!e");
+        String json = signupRequestObjectToJson("a@naver.com", "김건홍", "pwd123@!e");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))
@@ -109,9 +119,10 @@ class MemberControllerTest {
 
     @Test
     @DisplayName("회원가입에 성공한다. DB에 값을 저장한다 ")
+    @Transactional
     void test4() throws Exception {
         //given
-        String json = signupRequestObjectToJson("a@naver.com", "건홍", "dsdadsa@@");
+        String json = signupRequestObjectToJson("a@naver.com", "김건홍", "dsdadsa@@");
 
         //expected
         mockMvc.perform(post("/signup").contentType(APPLICATION_JSON).content(json))

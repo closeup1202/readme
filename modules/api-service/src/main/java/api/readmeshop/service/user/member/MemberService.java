@@ -1,5 +1,6 @@
 package api.readmeshop.service.user.member;
 
+import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.service.seek.Validation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

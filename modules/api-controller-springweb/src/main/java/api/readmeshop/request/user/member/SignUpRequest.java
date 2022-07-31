@@ -2,6 +2,7 @@ package api.readmeshop.request.user.member;
 
 import api.readmeshop.service.exception.ReadmeException;
 import api.readmeshop.service.user.member.SignUpRequired;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.*;
@@ -9,6 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static api.readmeshop.service.exception.ErrorCases.*;
+import static api.readmeshop.service.user.member.SignUpRole.ADMIN;
+import static api.readmeshop.service.user.member.SignUpRole.USER;
 
 @Getter
 @NoArgsConstructor
@@ -21,16 +24,21 @@ public class SignUpRequest {
     @NotBlank
     private String email;
 
-    @NotBlank
+    @NotNull
+    @Size(min = 3, max = 50)
     private String username;
 
-    @NotBlank
+    @NotNull
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Size(min = 8, max = 16)
     private String password;
 
     public SignUpRequired getSignUpRequired(){
         return SignUpRequired.builder()
                 .email(this.email)
+                .username(this.username)
                 .password(this.password)
+                .role( this.email.equals("admin") ? ADMIN.getRole() : USER.getRole() )
                 .build();
     }
 
