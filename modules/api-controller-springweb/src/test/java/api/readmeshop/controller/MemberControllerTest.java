@@ -134,7 +134,7 @@ class MemberControllerTest {
     }
 
     @Test
-    @DisplayName("회원 탈퇴하는 테스트")
+    @DisplayName("회원 탈퇴하는_테스트")
     void test5() throws Exception {
         //given
         Member member = Member.builder()
