@@ -3,7 +3,6 @@ package api.readmeshop.service.seek;
 import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.domain.user.member.MemberRepository;
 import api.readmeshop.domain.user.member.MemberType;
-import api.readmeshop.service.exception.ErrorCases;
 import api.readmeshop.service.exception.ReadmeException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class Validations implements Validation{
 
     @Override
     public void isExistMemberId(Long id) {
-        memberRepository.findById(id)
+         memberRepository.findById(id)
                 .orElseThrow(() -> new ReadmeException(NOTFOUND));
     }
 

@@ -15,6 +15,13 @@ spring:
   sql:
     init:
       mode: always
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 817137133374-5s5ubeg76kr2g38ogidukpt6j8jh8lrf.apps.googleusercontent.com
+            client-secret: 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
 
 logging.level:
   org.hibernate:

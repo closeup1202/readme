@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionAdvice {
 
     @ExceptionHandler(ReadmeException.class)
-    public ResponseEntity exceptionHandler(ReadmeException e){
+    public ResponseEntity<ErrorResponse> exceptionHandler(ReadmeException e){
 
         ErrorResponse response = ErrorResponse.builder()
                                             .code(e.getErrorCases())

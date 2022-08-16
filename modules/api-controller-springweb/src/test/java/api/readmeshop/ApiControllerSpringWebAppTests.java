@@ -4,5 +4,4 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ApiControllerSpringWebAppTests {
-    public void contextLoads(){}
 }

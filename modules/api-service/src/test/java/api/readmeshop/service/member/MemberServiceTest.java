@@ -9,6 +9,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,9 +39,10 @@ class MemberServiceTest {
 
     @Test
     @DisplayName("회원가입 테스트")
+    @Transactional
     void test(){
         //given
-        SignUpRequired required = new SignUpRequired("a@naver.com", "pwd");
+        SignUpRequired required = new SignUpRequired("a@naver.com", "홍길동", "pwddsadas@", "ROLE_USER");
 
         //when
         memberService.signUp(required);
@@ -47,7 +50,7 @@ class MemberServiceTest {
         //then
         assertThat(1L).isEqualTo(memberRepository.count());
         assertThat("a@naver.com").isEqualTo(required.getEmail());
-        assertThat("pwd").isEqualTo(required.getPassword());
+        assertThat("홍길동").isEqualTo(required.getUsername());
     }
 
     @Test

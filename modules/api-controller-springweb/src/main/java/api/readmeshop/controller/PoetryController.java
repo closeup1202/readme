@@ -20,7 +20,7 @@ public class PoetryController {
     private final PoetryService poetryService;
 
     @PostMapping("/poetry")
-    public void poetry_post(@RequestBody PostLiteratureRequest request){
+    public void poetryPost(@RequestBody PostLiteratureRequest request){
         PostLiteratureRequired required = request.getPostLiteratureRequired();
         poetryService.write(required);
     }

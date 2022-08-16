@@ -45,6 +45,10 @@ public class Member extends History {
     )
     private Set<Authority> authorities;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider")
+    private AuthenticationProvider authenticationProvider;
+
     @Builder
     public Member(String email, String password, String username, MemberType type, Set<Authority> authorities, boolean activated) {
         this.email = email;

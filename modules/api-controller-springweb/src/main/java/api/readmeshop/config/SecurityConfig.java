@@ -31,7 +31,7 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService memberDetailsService;
 
-    private static final String[] PERMIT_PATTERNS = {"/signup", "/account", "/signin", "/h2-console/**", "/favicon.ico"};
+    private static final String[] PERMIT_PATTERNS = {"/signup", "/account", "/signin", "/logout", "/h2-console/**", "/favicon.ico"};
 
     @Bean
     public HttpHeaders httpHeaders(){

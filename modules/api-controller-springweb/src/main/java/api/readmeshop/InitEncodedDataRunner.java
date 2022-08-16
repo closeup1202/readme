@@ -15,7 +15,7 @@ public class InitEncodedDataRunner implements CommandLineRunner {
     private MemberService memberService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
             SignUpRequest request = SignUpRequest.builder()
                     .email("b@naver.com")
                     .password("b1234567!")

@@ -1,6 +1,5 @@
 package api.readmeshop.jwt;
 
-import api.readmeshop.jwt.JwtHelper;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -36,7 +35,7 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = getToken(request);
             Map<String, Object> claims = jwtHelper.parseClaims(token);
             SecurityContextHolder.getContext().setAuthentication(createAuthentication(claims));
-        };
+        }
 
         filterChain.doFilter(request, response);
     }

@@ -1,6 +1,5 @@
 package api.readmeshop.service.user.member;
 
-import api.readmeshop.domain.user.member.Member;
 import api.readmeshop.service.seek.Validation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,10 +15,10 @@ public class MemberService {
     public void signUp(SignUpRequired required){
         validation.duplicatedEmailByMember(required.getEmail());
         signUp.save(required);
-    };
+    }
 
     public void resign(Long memberId){
         validation.isExistMemberId(memberId);
         resign.delete(memberId);
-    };
+    }
 }

@@ -1,12 +1,10 @@
 package api.readmeshop.domain.contents.literature.poetry;
 
-import api.readmeshop.domain.contents.literature.Literature;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static api.readmeshop.domain.contents.literature.QLiterature.literature;
 import static api.readmeshop.domain.contents.literature.poetry.QPoetry.*;
 
 @RequiredArgsConstructor

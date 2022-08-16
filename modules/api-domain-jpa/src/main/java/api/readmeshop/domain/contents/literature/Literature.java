@@ -26,7 +26,7 @@ public abstract class Literature extends History {
     @JoinColumn(name = "memberId")
     private Member member;
 
-    public Literature(String title, String contents, Member member) {
+    protected Literature(String title, String contents, Member member) {
         this.title = title;
         this.contents = contents;
         this.member = member;

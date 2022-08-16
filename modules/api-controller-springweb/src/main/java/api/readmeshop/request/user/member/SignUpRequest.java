@@ -2,7 +2,6 @@ package api.readmeshop.request.user.member;
 
 import api.readmeshop.service.exception.ReadmeException;
 import api.readmeshop.service.user.member.SignUpRequired;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.*;

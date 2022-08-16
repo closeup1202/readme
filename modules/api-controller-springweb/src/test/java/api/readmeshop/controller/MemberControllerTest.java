@@ -130,7 +130,7 @@ class MemberControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
 
-        assertThat(1L).isEqualTo(memberRepository.count());
+        assertThat(memberRepository.count()).isEqualTo(1L);
     }
 
     @Test
@@ -150,7 +150,7 @@ class MemberControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
 
-        assertThat(0L).isEqualTo(memberRepository.count());
+        assertThat(memberRepository.count()).isEqualTo(0L);
     }
 
     /**************************************************************************/
