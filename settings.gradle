@@ -3,4 +3,6 @@ include 'modules', 'modules:api-controller-springweb', 'modules:api-service', 'm
 findProject(':modules:api-controller-springweb')?.name = 'api-controller-springweb'
 findProject(':modules:api-service')?.name = 'api-service'
 findProject(':modules:api-domain-jpa')?.name = 'api-domain-jpa'
+include 'modules:api-redis'
+findProject(':modules:api-redis')?.name = 'api-redis'
 
